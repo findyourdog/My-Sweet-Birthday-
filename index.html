@@ -1,1 +1,398 @@
+```html
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Էլիզայի 25-ամյակ | Հրավեր</title>
+
+    <!-- Հայերեն տառատեսակներ Google Fonts-ից -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Noto+Serif+Armenian:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ========================================
+           1. ՀԻՄՆԱԿԱՆ ՈՃԵՐ ԵՎ ԳՈՒՅՆԵՐ
+        ======================================== */
+
+        :root {
+            --black: #090909;
+            --dark: #12110e;
+            --gold: #d6b779;
+            --light-gold: #f5e4b8;
+            --cream: #f8f1e5;
+            --muted: #b9ad98;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--black);
+            color: var(--cream);
+            font-family: "Noto Serif Armenian", serif;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        ::selection {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        /* Ֆոնային ոսկեգույն լուսավորություն */
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+
+            background:
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(174, 131, 57, 0.12),
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at 85% 75%,
+                    rgba(174, 131, 57, 0.10),
+                    transparent 35%
+                );
+        }
+
+        /* ========================================
+           2. ՎԵՐԵՎԻ ՄԵՆՅՈՒ
+        ======================================== */
+
+        .navbar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 20;
+            padding: 28px 7%;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            font-family: "Noto Serif Armenian", serif;
+            font-size: 19px;
+            letter-spacing: 2px;
+            color: var(--light-gold);
+        }
+
+        .nav-label {
+            font-family: "DM Sans", sans-serif;
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: var(--muted);
+            text-transform: uppercase;
+        }
+
+        /* ========================================
+           3. ԳԼԽԱՎՈՐ ՀՐԱՎԵՐԻ ԲԱԺԻՆ
+        ======================================== */
+
+        .hero {
+            min-height: 100vh;
+            min-height: 100svh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            position: relative;
+            overflow: hidden;
+
+            padding: 130px 20px 100px;
+
+            background:
+                radial-gradient(
+                    ellipse at center,
+                    rgba(116, 83, 36, 0.18),
+                    transparent 58%
+                ),
+                linear-gradient(
+                    145deg,
+                    #15130f,
+                    #080808 65%,
+                    #19140c
+                );
+        }
+
+        /* Դեկորատիվ շրջանակներ */
+
+        .hero::before,
+        .hero::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+
+            border: 1px solid rgba(214, 183, 121, 0.16);
+            border-radius: 50%;
+
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .hero::before {
+            width: 600px;
+            height: 600px;
+        }
+
+        .hero::after {
+            width: 780px;
+            height: 780px;
+            border-color: rgba(214, 183, 121, 0.08);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 5;
+
+            width: 100%;
+            max-width: 900px;
+
+            text-align: center;
+
+            animation: fadeIn 1.5s ease both;
+        }
+
+        .eyebrow {
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 11px;
+            margin-bottom: 28px;
+        }
+
+        .hero h1 {
+            font-family: "Noto Serif Armenian", serif;
+            font-size: clamp(38px, 7vw, 85px);
+            line-height: 1.3;
+            font-weight: 300;
+        }
+
+        .hero h1 span {
+            display: block;
+            color: var(--light-gold);
+            font-weight: 400;
+            margin-top: 5px;
+        }
+
+        .hero-description {
+            max-width: 520px;
+            margin: 28px auto 0;
+
+            color: #c0b6a5;
+            font-size: 13px;
+            font-weight: 300;
+            line-height: 2.2;
+        }
+
+        .gold-line {
+            width: 55px;
+            height: 1px;
+            background: var(--gold);
+            margin: 25px auto;
+        }
+
+        .event-date {
+            color: var(--cream);
+            font-family: "DM Sans", sans-serif;
+            font-size: 12px;
+            letter-spacing: 2px;
+        }
+
+        /* Գլխավոր կոճակ */
+
+        .button {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+
+            margin-top: 32px;
+            padding: 17px 28px;
+
+            border: 1px solid var(--gold);
+
+            background: linear-gradient(
+                135deg,
+                #f3dfad,
+                #c6a15d
+            );
+
+            color: #17120a;
+
+            font-size: 11px;
+            font-weight: 600;
+
+            transition:
+                transform 0.35s ease,
+                box-shadow 0.35s ease,
+                background 0.35s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(214, 183, 121, 0.25);
+            background: var(--cream);
+        }
+
+        .arrow {
+            font-size: 17px;
+            transition: transform 0.3s ease;
+        }
+
+        .button:hover .arrow {
+            transform: translateX(5px);
+        }
+
+        /* ========================================
+           4. ՇԱՐԺՎՈՂ ՓՈՒՉԻԿՆԵՐ
+        ======================================== */
+
+        .balloon {
+            position: absolute;
+            bottom: -220px;
+
+            width: 78px;
+            height: 100px;
+
+            border-radius: 50% 50% 45% 45%;
+
+            z-index: 2;
+            opacity: 0.8;
+
+            animation: floatUp 14s linear infinite;
+            pointer-events: none;
+
+            box-shadow:
+                inset -12px -10px 20px rgba(0, 0, 0, 0.2),
+                inset 10px 8px 20px rgba(255, 255, 255, 0.12),
+                0 0 25px rgba(214, 183, 121, 0.08);
+        }
+
+        /* Փուչիկի հանգույցը */
+
+        .balloon::before {
+            content: "";
+            position: absolute;
+            bottom: -7px;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            width: 12px;
+            height: 12px;
+
+            background: inherit;
+
+            clip-path: polygon(
+                0 0,
+                100% 0,
+                50% 100%
+            );
+        }
+
+        /* Փուչիկի թելը */
+
+        .balloon::after {
+            content: "";
+            position: absolute;
+
+            top: calc(100% + 5px);
+            left: 50%;
+
+            width: 1px;
+            height: 100px;
+
+            background: rgba(214, 183, 121, 0.5);
+        }
+
+        .balloon-1 {
+            left: 5%;
+            background: linear-gradient(135deg, #f0dfb2, #a88039);
+            animation-duration: 17s;
+            animation-delay: -8s;
+        }
+
+        .balloon-2 {
+            left: 19%;
+            background: linear-gradient(135deg, #f9f1df, #c8b58e);
+            animation-duration: 20s;
+            animation-delay: -14s;
+        }
+
+        .balloon-3 {
+            left: 35%;
+            background: linear-gradient(135deg, #d5b67b, #795c2e);
+            animation-duration: 16s;
+            animation-delay: -4s;
+        }
+
+        .balloon-4 {
+            left: 58%;
+            background: linear-gradient(135deg, #f6e8c9, #b99a62);
+            animation-duration: 19s;
+            animation-delay: -11s;
+        }
+
+        .balloon-5 {
+            left: 76%;
+            background: linear-gradient(135deg, #d9c18d, #8c6a32);
+            animation-duration: 15s;
+            animation-delay: -6s;
+        }
+
+        .balloon-6 {
+            left: 91%;
+            background: linear-gradient(135deg, #fff0c9, #b08a47);
+            animation-duration: 21s;
+            animation-delay: -16s;
+        }
+
+        @keyframes floatUp {
+            0% {
+                bottom: -220px;
+                margin-left: 0;
+            }
+
+            25% {
+                margin-left: 18px;
+            }
+
+            50% {
+                margin-left: -15px;
+            }
+
+            75% {
+                margin-left: 15px;
+            }
+
+            100% {
+                bottom: 115
