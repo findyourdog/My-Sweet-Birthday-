@@ -1,389 +1,627 @@
+
 <!DOCTYPE html>
-<html lang="hy">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#a66e78">
 
-<title>Eliza's 25th Birthday</title>
+<title>Eliza | 25th Birthday Invitation</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Noto+Serif+Armenian:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+:root {
+    --rose: #a66e78;
+    --rose-dark: #86515e;
+    --pink: #d7a9a8;
+    --gold: #d9b77e;
+    --cream: #fff5ec;
+    --white: #fffaf6;
+}
+
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-  background: #f8f4ed;
-  color: #665348;
-  font-family: 'DM Sans', sans-serif;
-  overflow-x: hidden;
+    font-family: 'DM Sans', sans-serif;
+    background: var(--rose);
+    color: var(--white);
+    overflow-x: hidden;
 }
 
-.page {
-  min-height: 100vh;
-  min-height: 100svh;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 50px 20px;
-  overflow: hidden;
-  background: radial-gradient(circle at center, #fffdf9, #f8f4ed 75%);
-}
+/* GENERAL */
 
-.content {
-  position: relative;
-  z-index: 3;
-  width: 100%;
-  max-width: 650px;
-  text-align: center;
-  animation: appear 1.5s ease-out both;
+section {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 80px 22px;
 }
 
 .eyebrow {
-  font-size: 11px;
-  letter-spacing: 5px;
-  text-transform: uppercase;
-  color: #a58a6d;
-  margin-bottom: 25px;
+    font-size: 11px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    opacity: .8;
 }
 
-.number-wrap {
-  position: relative;
-  margin: 0 auto;
-  width: 100%;
-  height: 250px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.gold-text {
+    background: linear-gradient(
+        135deg,
+        #fff4cf 0%,
+        #c99d57 25%,
+        #fff0c2 48%,
+        #b68a49 72%,
+        #f5dfad 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
-.number {
-  font-size: clamp(145px, 28vw, 230px);
-  font-weight: 300;
-  line-height: 1;
-  letter-spacing: -14px;
-  padding-right: 14px;
-  color: #c6a77e;
-  background: linear-gradient(135deg, #f5e8d4, #b99569, #e8d2b1, #ad8b66);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: zoomIn 1.8s ease-out both;
+/* SECTION 1 */
+
+.hero {
+    background:
+        radial-gradient(ellipse at 50% 45%, #c18c91 0%, transparent 55%),
+        linear-gradient(145deg, #bd8990, #a66e78 55%, #925d69);
+    text-align: center;
 }
 
-.side {
-  position: absolute;
-  top: 50%;
-  font-size: 48px;
-  font-weight: 300;
-  color: #d9c6ad;
-  transform: translateY(-50%);
-  opacity: 0;
-  animation: sideIn 1.5s ease-out 0.5s forwards;
+.hero-content {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: 850px;
+    animation: fadeIn 1.5s ease both;
 }
 
-.side.left {
-  left: 4%;
+.hero .eyebrow {
+    margin-bottom: 20px;
 }
 
-.side.right {
-  right: 4%;
+.hero-number {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(170px, 35vw, 340px);
+    font-weight: 700;
+    line-height: .95;
+    letter-spacing: -15px;
+    filter: drop-shadow(0 12px 12px rgba(74, 39, 32, .22));
+    animation: numberReveal 2s cubic-bezier(.2,.8,.2,1) both;
 }
 
-h1 {
-  font-family: 'Noto Serif Armenian', serif;
-  font-size: clamp(23px, 5vw, 34px);
-  font-weight: 400;
-  margin-top: 15px;
-  color: #665348;
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 7vw, 65px);
+    font-weight: 500;
+    letter-spacing: 3px;
+    margin-top: 8px;
 }
 
-.subtitle {
-  margin-top: 12px;
-  font-size: 11px;
-  letter-spacing: 5px;
-  text-transform: uppercase;
-  color: #aa9075;
+.hero-subtitle {
+    margin-top: 18px;
+    font-size: 12px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    opacity: .85;
 }
 
-.separator {
-  width: 50px;
-  height: 1px;
-  background: #cdb493;
-  margin: 30px auto;
+.scroll-hint {
+    position: absolute;
+    bottom: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    z-index: 4;
+    opacity: .8;
 }
 
-.message {
-  font-family: 'Noto Serif Armenian', serif;
-  font-size: 15px;
-  line-height: 2;
-  color: #857365;
-  max-width: 420px;
-  margin: auto;
+.scroll-line {
+    height: 38px;
+    width: 1px;
+    background: linear-gradient(transparent, white);
+    animation: scrollPulse 1.8s infinite;
 }
 
-.details {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 35px;
-  margin-top: 35px;
-}
-
-.detail-title {
-  font-size: 10px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: #ad9276;
-  margin-bottom: 10px;
-}
-
-.detail-value {
-  font-size: 15px;
-  font-weight: 500;
-  color: #665348;
-}
-
-.address {
-  font-family: 'Noto Serif Armenian', serif;
-  font-size: 12px;
-  margin-top: 7px;
-  color: #8e7c6b;
-}
-
-.footer {
-  margin-top: 45px;
-  font-size: 10px;
-  letter-spacing: 4px;
-  color: #b29a7e;
-  text-transform: uppercase;
-}
-
-/* Balloons */
+/* BALLOONS */
 
 .balloon {
-  position: absolute;
-  bottom: -160px;
-  width: 65px;
-  height: 85px;
-  border-radius: 50% 50% 45% 45%;
-  z-index: 1;
-  opacity: 0;
-  animation: float 18s linear infinite;
-  box-shadow:
-    inset -10px -12px 18px rgba(110, 80, 50, .10),
-    inset 9px 8px 15px rgba(255,255,255,.8),
-    0 8px 20px rgba(90,70,50,.08);
+    position: absolute;
+    z-index: 1;
+    width: 65px;
+    height: 82px;
+    border-radius: 50% 50% 46% 46%;
+    background: radial-gradient(
+        circle at 30% 25%,
+        #f4d7c7,
+        #d6a5a0 35%,
+        #b77b83 75%,
+        #8f5866
+    );
+    box-shadow: inset -8px -10px 18px rgba(80, 35, 43, .15),
+                0 10px 25px rgba(70, 35, 40, .12);
+    animation: float 6s ease-in-out infinite;
 }
 
 .balloon::before {
-  content: "";
-  position: absolute;
-  bottom: -5px;
-  left: 50%;
-  width: 9px;
-  height: 9px;
-  background: inherit;
-  transform: translateX(-50%) rotate(45deg);
+    content: "";
+    position: absolute;
+    bottom: -7px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 0;
+    border-top: 9px solid #bd8988;
 }
 
 .balloon::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  height: 95px;
-  width: 1px;
-  background: rgba(150,120,90,.35);
+    content: "";
+    position: absolute;
+    top: 88px;
+    left: 50%;
+    width: 1px;
+    height: 100px;
+    background: rgba(255, 239, 222, .55);
 }
 
-.balloon:nth-child(1) {
-  left: 8%;
-  background: radial-gradient(circle at 30% 25%, #fffaf0, #e8d3b5 65%, #c6a77e);
-  animation-delay: 0s;
-  animation-duration: 19s;
+.balloon.gold {
+    background: radial-gradient(
+        circle at 30% 25%,
+        #fff0c8,
+        #dfc18b 40%,
+        #b88d53 80%
+    );
 }
 
-.balloon:nth-child(2) {
-  left: 25%;
-  width: 50px;
-  height: 68px;
-  background: radial-gradient(circle at 30% 25%, #fff, #e6ddd0 65%, #c6b7a4);
-  animation-delay: 5s;
-  animation-duration: 22s;
+.balloon.pink {
+    background: radial-gradient(
+        circle at 30% 25%,
+        #ffe0d9,
+        #dba8aa 45%,
+        #a96c7a
+    );
 }
 
-.balloon:nth-child(3) {
-  right: 8%;
-  background: radial-gradient(circle at 30% 25%, #fffaf0, #e8d3b5 65%, #c6a77e);
-  animation-delay: 3s;
-  animation-duration: 20s;
-}
-
-.balloon:nth-child(4) {
-  right: 25%;
-  width: 52px;
-  height: 70px;
-  background: radial-gradient(circle at 30% 25%, #fff, #e6ddd0 65%, #c6b7a4);
-  animation-delay: 8s;
-  animation-duration: 23s;
-}
-
-.balloon:nth-child(5) {
-  left: 50%;
-  width: 45px;
-  height: 60px;
-  background: radial-gradient(circle at 30% 25%, #fffaf0, #e8d3b5 65%, #c6a77e);
-  animation-delay: 11s;
-  animation-duration: 21s;
-}
+.b1 { top: 12%; left: 8%; animation-delay: 0s; transform: scale(.8); }
+.b2 { top: 25%; right: 9%; animation-delay: 1s; transform: scale(1.1); }
+.b3 { bottom: 19%; left: 13%; animation-delay: 2s; transform: scale(.9); }
+.b4 { bottom: 15%; right: 12%; animation-delay: .5s; transform: scale(1.2); }
+.b5 { top: 7%; right: 28%; animation-delay: 1.5s; transform: scale(.65); }
+.b6 { top: 42%; left: 3%; animation-delay: 2.5s; transform: scale(.7); }
 
 @keyframes float {
-  0% {
-    transform: translateY(0) translateX(0) rotate(-7deg);
+    0%, 100% { margin-top: 0; }
+    50% { margin-top: -30px; }
+}
+
+@keyframes numberReveal {
+    from {
+        opacity: 0;
+        transform: scale(.65) translateY(45px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes scrollPulse {
+    0%, 100% { opacity: .3; transform: scaleY(.7); }
+    50% { opacity: 1; transform: scaleY(1); }
+}
+
+/* SECTION 2 */
+
+.details {
+    background: linear-gradient(145deg, #f3d8d0, #e7c1ba 50%, #d4a3a1);
+    color: #68464a;
+    text-align: center;
+}
+
+.details-content {
+    width: 100%;
+    max-width: 650px;
+    position: relative;
+    z-index: 2;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(38px, 7vw, 62px);
+    font-weight: 500;
+    margin: 16px 0;
+}
+
+.details-description {
+    font-size: 13px;
+    letter-spacing: 1px;
+    margin-bottom: 48px;
+    opacity: .8;
+}
+
+.detail-card {
+    border: 1px solid rgba(139, 91, 89, .35);
+    padding: 26px 20px;
+    margin: 15px 0;
+    background: rgba(255, 250, 246, .28);
+    backdrop-filter: blur(8px);
+    transition: transform .4s ease, background .4s ease;
+}
+
+.detail-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 250, 246, .5);
+}
+
+.detail-icon {
+    font-size: 23px;
+    margin-bottom: 12px;
+}
+
+.detail-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 9px;
+    opacity: .75;
+}
+
+.detail-value {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(21px, 4vw, 28px);
+}
+
+.location-link {
+    display: inline-block;
+    margin-top: 15px;
+    color: #80535a;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-decoration: none;
+    border-bottom: 1px solid #80535a;
+    padding-bottom: 4px;
+    transition: .3s;
+}
+
+.location-link:hover {
+    opacity: .6;
+}
+
+.details-note {
+    margin-top: 38px;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 19px;
+}
+
+/* SECTION 3 */
+
+.thanks {
+    background:
+        radial-gradient(ellipse at 50% 50%, #c28d91, transparent 65%),
+        linear-gradient(145deg, #aa737d, #8e5967);
+    text-align: center;
+}
+
+.thanks-content {
+    max-width: 720px;
+    position: relative;
+    z-index: 3;
+}
+
+.thanks-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 85px;
+    opacity: .18;
+    margin-bottom: 20px;
+}
+
+.thanks-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(43px, 8vw, 78px);
+    font-weight: 500;
+    margin-bottom: 28px;
+}
+
+.thanks-message {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 4vw, 32px);
+    line-height: 1.6;
+    font-style: italic;
+    max-width: 590px;
+    margin: 0 auto;
+    color: #fff2e9;
+}
+
+.thanks-divider {
+    width: 65px;
+    height: 1px;
+    background: var(--gold);
+    margin: 40px auto;
+}
+
+.signature {
+    font-family: 'Playfair Display', serif;
+    font-size: 27px;
+    letter-spacing: 2px;
+}
+
+.heart {
+    color: #f3d2bd;
+    font-size: 20px;
+    margin-top: 12px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 25px;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: .6;
+    z-index: 3;
+}
+
+/* SCROLL ANIMATIONS */
+
+.reveal {
     opacity: 0;
-  }
-  12% {
-    opacity: .9;
-  }
-  50% {
-    transform: translateY(-65vh) translateX(25px) rotate(7deg);
-  }
-  90% {
-    opacity: .9;
-  }
-  100% {
-    transform: translateY(-125vh) translateX(-15px) rotate(-7deg);
-    opacity: 0;
-  }
+    transform: translateY(40px);
+    transition: opacity 1s ease, transform 1s ease;
 }
 
-@keyframes appear {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-@keyframes zoomIn {
-  from { opacity: 0; transform: scale(.65); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-@keyframes sideIn {
-  from { opacity: 0; }
-  to { opacity: .7; }
-}
+/* MOBILE */
 
 @media (max-width: 600px) {
-  .page {
-    padding: 35px 16px;
-  }
+    section {
+        padding: 70px 20px;
+    }
 
-  .number-wrap {
-    height: 195px;
-  }
+    .hero-number {
+        font-size: 52vw;
+        letter-spacing: -8px;
+    }
 
-  .number {
-    font-size: 165px;
-  }
+    .balloon {
+        width: 43px;
+        height: 58px;
+    }
 
-  .side {
-    font-size: 30px;
-  }
+    .balloon::after {
+        top: 64px;
+        height: 70px;
+    }
 
-  .side.left {
-    left: 0;
-  }
+    .b1 { left: 5%; top: 17%; }
+    .b2 { right: 5%; top: 23%; }
+    .b3 { left: 5%; bottom: 20%; }
+    .b4 { right: 5%; bottom: 17%; }
+    .b5 { right: 22%; top: 9%; }
+    .b6 { left: 2%; top: 48%; }
 
-  .side.right {
-    right: 0;
-  }
+    .details-description {
+        margin-bottom: 30px;
+    }
 
-  .details {
-    gap: 25px;
-  }
+    .detail-card {
+        padding: 23px 12px;
+    }
 
-  .message {
-    font-size: 13px;
-  }
-
-  .balloon {
-    transform: scale(.8);
-  }
+    .footer {
+        font-size: 8px;
+        letter-spacing: 2px;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation: none !important;
-    opacity: 1 !important;
-  }
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<main class="page">
+<!-- SECTION 1: BIRTHDAY INTRO -->
 
-  <div class="balloon"></div>
-  <div class="balloon"></div>
-  <div class="balloon"></div>
-  <div class="balloon"></div>
-  <div class="balloon"></div>
+<section class="hero">
 
-  <section class="content">
+    <div class="balloon b1"></div>
+    <div class="balloon gold b2"></div>
+    <div class="balloon pink b3"></div>
+    <div class="balloon gold b4"></div>
+    <div class="balloon pink b5"></div>
+    <div class="balloon gold b6"></div>
 
-    <div class="eyebrow">A special celebration</div>
+    <div class="hero-content">
 
-    <div class="number-wrap">
-      <span class="side left">25</span>
-      <div class="number">25</div>
-      <span class="side right">25</span>
-    </div>
+        <p class="eyebrow">A special day · A special celebration</p>
 
-    <h1>Էլիզայի 25-ամյակ</h1>
-    <div class="subtitle">Birthday invitation</div>
+        <div class="hero-number gold-text">25</div>
 
-    <div class="separator"></div>
+        <h1 class="hero-title">ELIZA</h1>
 
-    <p class="message">
-      Սիրով հրավիրում եմ քեզ միասին նշելու
-      իմ կյանքի այս գեղեցիկ օրը։
-      <br>
-      Սպասում եմ քեզ՝ այս օրը միասին
-      անմոռանալի դարձնելու։
-    </p>
-
-    <div class="details">
-
-      <div>
-        <div class="detail-title">Date</div>
-        <div class="detail-value">November 25</div>
-      </div>
-
-      <div>
-        <div class="detail-title">Time</div>
-        <div class="detail-value">19:00</div>
-      </div>
-
-      <div>
-        <div class="detail-title">Place</div>
-        <div class="detail-value">Apres Restaurant</div>
-        <div class="address">Խանջյան 2/9, Երևան</div>
-      </div>
+        <p class="hero-subtitle">My 25th Birthday</p>
 
     </div>
 
-    <div class="footer">Can't wait to see you</div>
+    <div class="scroll-hint">
+        <span>Scroll to discover</span>
+        <div class="scroll-line"></div>
+    </div>
 
-  </section>
+</section>
 
-</main>
+
+<!-- SECTION 2: EVENT DETAILS -->
+
+<section class="details">
+
+    <div class="details-content">
+
+        <div class="reveal">
+
+            <p class="eyebrow">You're invited</p>
+
+            <h2 class="section-title">Let's Celebrate</h2>
+
+            <p class="details-description">
+                I'd love to celebrate this special moment with you.
+            </p>
+
+        </div>
+
+        <div class="detail-card reveal">
+
+            <div class="detail-icon">✧</div>
+
+            <p class="detail-label">Date</p>
+
+            <p class="detail-value">November 5</p>
+
+        </div>
+
+        <div class="detail-card reveal">
+
+            <div class="detail-icon">◷</div>
+
+            <p class="detail-label">Time</p>
+
+            <p class="detail-value">19:00</p>
+
+        </div>
+
+        <div class="detail-card reveal">
+
+            <div class="detail-icon">⌖</div>
+
+            <p class="detail-label">Location</p>
+
+            <p class="detail-value">Apres Restaurant</p>
+
+            <p style="font-size:13px; margin-top:9px;">
+                Khanjyan 2/9, Yerevan
+            </p>
+
+            <a
+                class="location-link"
+                href="https://www.google.com/maps/search/?api=1&query=Apres+Restaurant+Khanjyan+2%2F9+Yerevan"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                VIEW LOCATION ↗
+            </a>
+
+        </div>
+
+        <p class="details-note reveal">
+            Save the date. I can't wait to see you!
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- SECTION 3: THANK YOU -->
+
+<section class="thanks">
+
+    <div class="balloon pink b1"></div>
+    <div class="balloon gold b2"></div>
+    <div class="balloon b3"></div>
+    <div class="balloon gold b4"></div>
+
+    <div class="thanks-content reveal">
+
+        <div class="thanks-number gold-text">25</div>
+
+        <h2 class="thanks-title">Thank You!</h2>
+
+        <p class="thanks-message">
+            Your presence will be the most beautiful
+            gift of my day.
+        </p>
+
+        <div class="thanks-divider"></div>
+
+        <p class="signature">With love, Eliza</p>
+
+        <div class="heart">♡</div>
+
+    </div>
+
+    <div class="footer">
+        Made with love · Eliza's 25th Birthday
+    </div>
+
+</section>
+
+
+<!-- SCROLL REVEAL SCRIPT -->
+
+<script>
+
+const observer = new IntersectionObserver((entries) => {
+
+    entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+
+            entry.target.classList.add('visible');
+
+        }
+
+    });
+
+}, {
+    threshold: 0.15
+});
+
+document.querySelectorAll('.reveal').forEach(element => {
+
+    observer.observe(element);
+
+});
+
+</script>
 
 </body>
 </html>
-
