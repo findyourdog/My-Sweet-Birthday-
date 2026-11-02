@@ -3,21 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Eliza's 25th Birthday</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Noto+Serif+Armenian:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Noto+Serif+Armenian:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
-:root {
-  --cream: #f8f4ed;
-  --champagne: #d8c1a0;
-  --gold: #b99b70;
-  --mocha: #665348;
-  --dark: #493a32;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -25,369 +17,309 @@
 }
 
 body {
-  background: var(--cream);
-  color: var(--dark);
+  background: #f8f4ed;
+  color: #665348;
   font-family: 'DM Sans', sans-serif;
   overflow-x: hidden;
 }
 
 .page {
   min-height: 100vh;
+  min-height: 100svh;
   position: relative;
-  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 60px 20px;
-  text-align: center;
-  background:
-    radial-gradient(ellipse at 50% 35%, #fffdf9 0%, #f8f4ed 65%, #eee4d8 100%);
-}
-
-/* Soft light */
-
-.page::before {
-  content: "";
-  position: absolute;
-  width: 600px;
-  height: 600px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.55);
-  filter: blur(80px);
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  pointer-events: none;
+  padding: 50px 20px;
+  overflow: hidden;
+  background: radial-gradient(circle at center, #fffdf9, #f8f4ed 75%);
 }
 
 .content {
   position: relative;
-  z-index: 5;
+  z-index: 3;
   width: 100%;
-  max-width: 700px;
-  animation: fadeIn 2s ease both;
+  max-width: 650px;
+  text-align: center;
+  animation: appear 1.5s ease-out both;
 }
 
-.small-title {
+.eyebrow {
   font-size: 11px;
-  letter-spacing: 6px;
+  letter-spacing: 5px;
   text-transform: uppercase;
-  color: #9d846d;
-  margin-bottom: 28px;
-  animation: fadeIn 1.5s ease both;
+  color: #a58a6d;
+  margin-bottom: 25px;
 }
 
-.number-area {
+.number-wrap {
   position: relative;
+  margin: 0 auto;
+  width: 100%;
+  height: 250px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  min-height: 270px;
-  margin-bottom: 5px;
+  justify-content: center;
 }
 
 .number {
-  font-family: 'DM Sans', sans-serif;
-  font-size: clamp(150px, 30vw, 260px);
+  font-size: clamp(145px, 28vw, 230px);
   font-weight: 300;
   line-height: 1;
-  letter-spacing: -18px;
-  padding-right: 18px;
-
-  background: linear-gradient(
-    145deg,
-    #fff9ed 5%,
-    #e8d4b7 25%,
-    #c6a77e 48%,
-    #f5e5cd 65%,
-    #b18d65 90%
-  );
-
-  -webkit-background-clip: text;
+  letter-spacing: -14px;
+  padding-right: 14px;
+  color: #c6a77e;
+  background: linear-gradient(135deg, #f5e8d4, #b99569, #e8d2b1, #ad8b66);
   background-clip: text;
-  color: transparent;
-
-  filter: drop-shadow(0 12px 15px rgba(113, 82, 54, 0.15));
-
-  animation: numberAppear 2s cubic-bezier(.2,.8,.2,1) both;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: zoomIn 1.8s ease-out both;
 }
 
-/* Side numbers */
-
-.side-number {
+.side {
   position: absolute;
   top: 50%;
-  font-size: 65px;
+  font-size: 48px;
   font-weight: 300;
-  color: rgba(190, 159, 121, 0.25);
+  color: #d9c6ad;
   transform: translateY(-50%);
-  animation-duration: 2s;
-  animation-fill-mode: both;
+  opacity: 0;
+  animation: sideIn 1.5s ease-out 0.5s forwards;
 }
 
-.left-number {
-  left: 2%;
-  animation-name: slideLeft;
+.side.left {
+  left: 4%;
 }
 
-.right-number {
-  right: 2%;
-  animation-name: slideRight;
+.side.right {
+  right: 4%;
 }
-
-/* Invitation text */
 
 h1 {
   font-family: 'Noto Serif Armenian', serif;
+  font-size: clamp(23px, 5vw, 34px);
   font-weight: 400;
-  font-size: clamp(23px, 5vw, 36px);
-  letter-spacing: 1px;
-  margin-top: 8px;
-  color: var(--mocha);
+  margin-top: 15px;
+  color: #665348;
 }
 
 .subtitle {
-  font-size: 12px;
+  margin-top: 12px;
+  font-size: 11px;
   letter-spacing: 5px;
   text-transform: uppercase;
-  margin-top: 13px;
-  color: #a38b73;
+  color: #aa9075;
 }
 
-.line {
-  width: 55px;
+.separator {
+  width: 50px;
   height: 1px;
-  background: var(--champagne);
+  background: #cdb493;
   margin: 30px auto;
 }
 
-.invitation {
+.message {
   font-family: 'Noto Serif Armenian', serif;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 2;
-  color: #79695d;
-  max-width: 440px;
-  margin: 0 auto;
+  color: #857365;
+  max-width: 420px;
+  margin: auto;
 }
 
 .details {
-  margin-top: 34px;
   display: flex;
   justify-content: center;
-  gap: 35px;
   flex-wrap: wrap;
+  gap: 35px;
+  margin-top: 35px;
 }
 
-.detail {
-  min-width: 110px;
-}
-
-.detail-label {
+.detail-title {
   font-size: 10px;
   letter-spacing: 3px;
-  color: #aa9178;
   text-transform: uppercase;
-  margin-bottom: 9px;
+  color: #ad9276;
+  margin-bottom: 10px;
 }
 
 .detail-value {
   font-size: 15px;
-  color: var(--mocha);
   font-weight: 500;
+  color: #665348;
 }
 
 .address {
   font-family: 'Noto Serif Armenian', serif;
-  font-size: 13px;
-  margin-top: 9px;
-  color: #8c7968;
+  font-size: 12px;
+  margin-top: 7px;
+  color: #8e7c6b;
 }
 
 .footer {
-  margin-top: 48px;
+  margin-top: 45px;
   font-size: 10px;
   letter-spacing: 4px;
-  color: #aa9178;
+  color: #b29a7e;
   text-transform: uppercase;
 }
 
-/* Floating balloons */
+/* Balloons */
 
 .balloon {
   position: absolute;
-  bottom: -180px;
-  width: 75px;
-  height: 95px;
+  bottom: -160px;
+  width: 65px;
+  height: 85px;
   border-radius: 50% 50% 45% 45%;
+  z-index: 1;
   opacity: 0;
-  z-index: 2;
-  animation: floatUp linear infinite;
+  animation: float 18s linear infinite;
   box-shadow:
-    inset -12px -12px 20px rgba(90, 65, 45, 0.10),
-    inset 10px 8px 18px rgba(255,255,255,0.65),
-    0 10px 25px rgba(100,75,50,0.08);
+    inset -10px -12px 18px rgba(110, 80, 50, .10),
+    inset 9px 8px 15px rgba(255,255,255,.8),
+    0 8px 20px rgba(90,70,50,.08);
 }
 
 .balloon::before {
   content: "";
   position: absolute;
-  width: 9px;
-  height: 10px;
-  background: inherit;
   bottom: -5px;
   left: 50%;
+  width: 9px;
+  height: 9px;
+  background: inherit;
   transform: translateX(-50%) rotate(45deg);
 }
 
 .balloon::after {
   content: "";
   position: absolute;
-  width: 1px;
-  height: 95px;
-  background: rgba(157, 128, 99, 0.35);
   top: 100%;
   left: 50%;
+  height: 95px;
+  width: 1px;
+  background: rgba(150,120,90,.35);
 }
 
-.b1 {
-  left: 7%;
-  background: radial-gradient(circle at 30% 25%, #fffaf1, #e9d8bd 60%, #c9ae8c);
-  animation-duration: 17s;
-  animation-delay: 1s;
-}
-
-.b2 {
-  left: 22%;
-  width: 55px;
-  height: 72px;
-  background: radial-gradient(circle at 30% 25%, #fff, #e7dfd3 65%, #c6b7a4);
-  animation-duration: 21s;
-  animation-delay: 5s;
-}
-
-.b3 {
-  right: 9%;
-  background: radial-gradient(circle at 30% 25%, #fff9ef, #dfc8a7 60%, #b9966e);
+.balloon:nth-child(1) {
+  left: 8%;
+  background: radial-gradient(circle at 30% 25%, #fffaf0, #e8d3b5 65%, #c6a77e);
+  animation-delay: 0s;
   animation-duration: 19s;
+}
+
+.balloon:nth-child(2) {
+  left: 25%;
+  width: 50px;
+  height: 68px;
+  background: radial-gradient(circle at 30% 25%, #fff, #e6ddd0 65%, #c6b7a4);
+  animation-delay: 5s;
+  animation-duration: 22s;
+}
+
+.balloon:nth-child(3) {
+  right: 8%;
+  background: radial-gradient(circle at 30% 25%, #fffaf0, #e8d3b5 65%, #c6a77e);
   animation-delay: 3s;
-}
-
-.b4 {
-  right: 25%;
-  width: 60px;
-  height: 78px;
-  background: radial-gradient(circle at 30% 25%, #fff, #eee3d5 60%, #cdbba6);
-  animation-duration: 23s;
-  animation-delay: 8s;
-}
-
-.b5 {
-  left: 45%;
-  width: 48px;
-  height: 63px;
-  background: radial-gradient(circle at 30% 25%, #fffaf1, #e8d3b5 60%, #c3a27c);
   animation-duration: 20s;
-  animation-delay: 11s;
 }
 
-@keyframes floatUp {
+.balloon:nth-child(4) {
+  right: 25%;
+  width: 52px;
+  height: 70px;
+  background: radial-gradient(circle at 30% 25%, #fff, #e6ddd0 65%, #c6b7a4);
+  animation-delay: 8s;
+  animation-duration: 23s;
+}
+
+.balloon:nth-child(5) {
+  left: 50%;
+  width: 45px;
+  height: 60px;
+  background: radial-gradient(circle at 30% 25%, #fffaf0, #e8d3b5 65%, #c6a77e);
+  animation-delay: 11s;
+  animation-duration: 21s;
+}
+
+@keyframes float {
   0% {
-    transform: translateY(0) translateX(0) rotate(-8deg);
+    transform: translateY(0) translateX(0) rotate(-7deg);
     opacity: 0;
   }
-  10% {
-    opacity: 0.95;
+  12% {
+    opacity: .9;
   }
   50% {
-    transform: translateY(-65vh) translateX(25px) rotate(8deg);
+    transform: translateY(-65vh) translateX(25px) rotate(7deg);
   }
   90% {
-    opacity: 0.9;
+    opacity: .9;
   }
   100% {
-    transform: translateY(-125vh) translateX(-15px) rotate(-8deg);
+    transform: translateY(-125vh) translateX(-15px) rotate(-7deg);
     opacity: 0;
   }
 }
 
-@keyframes numberAppear {
-  0% {
-    opacity: 0;
-    transform: scale(.55);
-    filter: blur(10px);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-    filter: drop-shadow(0 12px 15px rgba(113,82,54,.15));
-  }
-}
-
-@keyframes slideLeft {
-  from { opacity: 0; transform: translate(-100px,-50%); }
-  to { opacity: 1; transform: translate(0,-50%); }
-}
-
-@keyframes slideRight {
-  from { opacity: 0; transform: translate(100px,-50%); }
-  to { opacity: 1; transform: translate(0,-50%); }
-}
-
-@keyframes fadeIn {
+@keyframes appear {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Mobile */
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(.65); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes sideIn {
+  from { opacity: 0; }
+  to { opacity: .7; }
+}
 
 @media (max-width: 600px) {
   .page {
-    padding: 55px 18px;
-    min-height: 100svh;
+    padding: 35px 16px;
   }
 
-  .number-area {
-    min-height: 210px;
+  .number-wrap {
+    height: 195px;
   }
 
   .number {
-    font-size: 175px;
-    letter-spacing: -13px;
+    font-size: 165px;
   }
 
-  .side-number {
-    font-size: 40px;
+  .side {
+    font-size: 30px;
   }
 
-  .left-number {
+  .side.left {
     left: 0;
   }
 
-  .right-number {
+  .side.right {
     right: 0;
-  }
-
-  .small-title {
-    letter-spacing: 4px;
   }
 
   .details {
     gap: 25px;
   }
 
-  .invitation {
-    font-size: 14px;
+  .message {
+    font-size: 13px;
   }
 
   .balloon {
-    transform: scale(.75);
+    transform: scale(.8);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
+    animation: none !important;
+    opacity: 1 !important;
   }
 }
 </style>
@@ -397,29 +329,28 @@ h1 {
 
 <main class="page">
 
-  <!-- Floating balloons -->
-  <div class="balloon b1"></div>
-  <div class="balloon b2"></div>
-  <div class="balloon b3"></div>
-  <div class="balloon b4"></div>
-  <div class="balloon b5"></div>
+  <div class="balloon"></div>
+  <div class="balloon"></div>
+  <div class="balloon"></div>
+  <div class="balloon"></div>
+  <div class="balloon"></div>
 
   <section class="content">
 
-    <div class="small-title">A special celebration</div>
+    <div class="eyebrow">A special celebration</div>
 
-    <div class="number-area">
-      <span class="side-number left-number">25</span>
+    <div class="number-wrap">
+      <span class="side left">25</span>
       <div class="number">25</div>
-      <span class="side-number right-number">25</span>
+      <span class="side right">25</span>
     </div>
 
     <h1>Էլիզայի 25-ամյակ</h1>
     <div class="subtitle">Birthday invitation</div>
 
-    <div class="line"></div>
+    <div class="separator"></div>
 
-    <p class="invitation">
+    <p class="message">
       Սիրով հրավիրում եմ քեզ միասին նշելու
       իմ կյանքի այս գեղեցիկ օրը։
       <br>
@@ -429,18 +360,18 @@ h1 {
 
     <div class="details">
 
-      <div class="detail">
-        <div class="detail-label">Date</div>
+      <div>
+        <div class="detail-title">Date</div>
         <div class="detail-value">November 25</div>
       </div>
 
-      <div class="detail">
-        <div class="detail-label">Time</div>
+      <div>
+        <div class="detail-title">Time</div>
         <div class="detail-value">19:00</div>
       </div>
 
-      <div class="detail">
-        <div class="detail-label">Place</div>
+      <div>
+        <div class="detail-title">Place</div>
         <div class="detail-value">Apres Restaurant</div>
         <div class="address">Խանջյան 2/9, Երևան</div>
       </div>
