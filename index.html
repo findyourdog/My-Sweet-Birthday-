@@ -1,523 +1,459 @@
+
 <!DOCTYPE html>
 <html lang="hy">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title> MY SWEET 25| Հրավեր</title>
+<title>Eliza's 25th Birthday</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Noto+Serif+Armenian:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Noto+Serif+Armenian:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
 :root {
-    --black: #090909;
-    --dark: #15130f;
-    --gold: #d6b779;
-    --light-gold: #f5e4b8;
-    --cream: #f8f1e5;
-    --muted: #b9ad98;
+  --cream: #f8f4ed;
+  --champagne: #d8c1a0;
+  --gold: #b99b70;
+  --mocha: #665348;
+  --dark: #493a32;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    background: var(--black);
-    color: var(--cream);
-    font-family: "Noto Serif Armenian", serif;
-    overflow-x: hidden;
+  background: var(--cream);
+  color: var(--dark);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
 }
 
-a {
-    color: inherit;
-    text-decoration: none;
+.page {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 50% 35%, #fffdf9 0%, #f8f4ed 65%, #eee4d8 100%);
 }
 
-/* NAVIGATION */
+/* Soft light */
 
-.navbar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 28px 7%;
-    z-index: 10;
+.page::before {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.55);
+  filter: blur(80px);
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
 }
 
-.nav-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.content {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 700px;
+  animation: fadeIn 2s ease both;
 }
 
-.logo {
-    color: var(--light-gold);
-    font-size: 19px;
-    letter-spacing: 2px;
+.small-title {
+  font-size: 11px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: #9d846d;
+  margin-bottom: 28px;
+  animation: fadeIn 1.5s ease both;
 }
 
-.nav-label {
-    color: var(--muted);
-    font-family: "DM Sans", sans-serif;
-    font-size: 10px;
-    letter-spacing: 3px;
+.number-area {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 270px;
+  margin-bottom: 5px;
 }
 
-/* HERO */
+.number {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(150px, 30vw, 260px);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -18px;
+  padding-right: 18px;
 
-.hero {
-    min-height: 100vh;
-    min-height: 100svh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    padding: 130px 20px 100px;
+  background: linear-gradient(
+    145deg,
+    #fff9ed 5%,
+    #e8d4b7 25%,
+    #c6a77e 48%,
+    #f5e5cd 65%,
+    #b18d65 90%
+  );
 
-    background:
-        radial-gradient(ellipse at center,
-        rgba(116, 83, 36, 0.2),
-        transparent 60%),
-        linear-gradient(145deg,
-        #15130f,
-        #080808 65%,
-        #19140c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  filter: drop-shadow(0 12px 15px rgba(113, 82, 54, 0.15));
+
+  animation: numberAppear 2s cubic-bezier(.2,.8,.2,1) both;
 }
 
-.hero::before,
-.hero::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    border: 1px solid rgba(214, 183, 121, 0.13);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
+/* Side numbers */
+
+.side-number {
+  position: absolute;
+  top: 50%;
+  font-size: 65px;
+  font-weight: 300;
+  color: rgba(190, 159, 121, 0.25);
+  transform: translateY(-50%);
+  animation-duration: 2s;
+  animation-fill-mode: both;
 }
 
-.hero::before {
-    width: 600px;
-    height: 600px;
+.left-number {
+  left: 2%;
+  animation-name: slideLeft;
 }
 
-.hero::after {
-    width: 780px;
-    height: 780px;
-    border-color: rgba(214, 183, 121, 0.07);
+.right-number {
+  right: 2%;
+  animation-name: slideRight;
 }
 
-.hero-content {
-    position: relative;
-    z-index: 5;
-    width: 100%;
-    max-width: 850px;
-    text-align: center;
-    animation: fadeIn 1.5s ease both;
+/* Invitation text */
+
+h1 {
+  font-family: 'Noto Serif Armenian', serif;
+  font-weight: 400;
+  font-size: clamp(23px, 5vw, 36px);
+  letter-spacing: 1px;
+  margin-top: 8px;
+  color: var(--mocha);
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(25px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.subtitle {
+  font-size: 12px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  margin-top: 13px;
+  color: #a38b73;
 }
 
-.eyebrow {
-    color: var(--gold);
-    font-family: "DM Sans", sans-serif;
-    font-size: 11px;
-    letter-spacing: 4px;
-    margin-bottom: 28px;
+.line {
+  width: 55px;
+  height: 1px;
+  background: var(--champagne);
+  margin: 30px auto;
 }
 
-.hero h1 {
-    font-size: clamp(36px, 7vw, 78px);
-    line-height: 1.4;
-    font-weight: 300;
+.invitation {
+  font-family: 'Noto Serif Armenian', serif;
+  font-size: 16px;
+  line-height: 2;
+  color: #79695d;
+  max-width: 440px;
+  margin: 0 auto;
 }
-
-.hero h1 span {
-    display: block;
-    color: var(--light-gold);
-    font-size: clamp(75px, 14vw, 145px);
-    line-height: 1.2;
-    font-weight: 400;
-}
-
-.gold-line {
-    width: 55px;
-    height: 1px;
-    background: var(--gold);
-    margin: 28px auto;
-}
-
-.hero-description {
-    max-width: 550px;
-    margin: 0 auto;
-    color: #c0b6a5;
-    font-size: 14px;
-    line-height: 2.2;
-}
-
-.event-date {
-    font-family: "DM Sans", sans-serif;
-    font-size: 13px;
-    letter-spacing: 3px;
-    color: var(--cream);
-}
-
-/* BUTTON */
-
-.button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 35px;
-    padding: 17px 30px;
-    background: linear-gradient(135deg, #f3dfad, #c6a15d);
-    color: #17120a;
-    font-family: "DM Sans", sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    border: 1px solid var(--gold);
-    transition: 0.35s ease;
-}
-
-.button:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 35px rgba(214,183,121,0.25);
-    background: var(--cream);
-}
-
-/* BALLOONS */
-
-.balloon {
-    position: absolute;
-    bottom: -220px;
-    width: 70px;
-    height: 90px;
-    border-radius: 50% 50% 45% 45%;
-    z-index: 2;
-    opacity: 0.8;
-    pointer-events: none;
-
-    box-shadow:
-        inset -12px -10px 20px rgba(0,0,0,0.2),
-        inset 10px 8px 20px rgba(255,255,255,0.15);
-
-    animation: floatUp 18s linear infinite;
-}
-
-.balloon::before {
-    content: "";
-    position: absolute;
-    bottom: -7px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 12px;
-    height: 12px;
-    background: inherit;
-    clip-path: polygon(0 0, 100% 0, 50% 100%);
-}
-
-.balloon::after {
-    content: "";
-    position: absolute;
-    top: calc(100% + 5px);
-    left: 50%;
-    width: 1px;
-    height: 100px;
-    background: rgba(214,183,121,0.5);
-}
-
-.balloon-1 {
-    left: 5%;
-    background: linear-gradient(135deg,#f0dfb2,#a88039);
-    animation-duration: 17s;
-    animation-delay: -8s;
-}
-
-.balloon-2 {
-    left: 19%;
-    background: linear-gradient(135deg,#f9f1df,#c8b58e);
-    animation-duration: 20s;
-    animation-delay: -14s;
-}
-
-.balloon-3 {
-    left: 35%;
-    background: linear-gradient(135deg,#d5b67b,#795c2e);
-    animation-duration: 16s;
-    animation-delay: -4s;
-}
-
-.balloon-4 {
-    left: 58%;
-    background: linear-gradient(135deg,#f6e8c9,#b99a62);
-    animation-duration: 19s;
-    animation-delay: -11s;
-}
-
-.balloon-5 {
-    left: 76%;
-    background: linear-gradient(135deg,#d9c18d,#8c6a32);
-    animation-duration: 15s;
-    animation-delay: -6s;
-}
-
-.balloon-6 {
-    left: 91%;
-    background: linear-gradient(135deg,#fff0c9,#b08a47);
-    animation-duration: 21s;
-    animation-delay: -16s;
-}
-
-@keyframes floatUp {
-    0% {
-        bottom: -220px;
-        margin-left: 0;
-    }
-    25% {
-        margin-left: 18px;
-    }
-    50% {
-        margin-left: -15px;
-    }
-    75% {
-        margin-left: 15px;
-    }
-    100% {
-        bottom: 115vh;
-        margin-left: 0;
-    }
-}
-
-/* DETAILS SECTION */
 
 .details {
-    position: relative;
-    padding: 100px 20px;
-    text-align: center;
-    background:
-        radial-gradient(ellipse at top,
-        rgba(116,83,36,0.12),
-        transparent 65%),
-        #12110e;
+  margin-top: 34px;
+  display: flex;
+  justify-content: center;
+  gap: 35px;
+  flex-wrap: wrap;
 }
 
-.details-content {
-    max-width: 600px;
-    margin: auto;
+.detail {
+  min-width: 110px;
 }
 
-.details h2 {
-    color: var(--light-gold);
-    font-size: clamp(30px, 5vw, 45px);
-    font-weight: 400;
-    margin-bottom: 25px;
+.detail-label {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: #aa9178;
+  text-transform: uppercase;
+  margin-bottom: 9px;
 }
 
-.details-description {
-    color: var(--muted);
-    font-size: 14px;
-    line-height: 2;
-    margin-bottom: 40px;
+.detail-value {
+  font-size: 15px;
+  color: var(--mocha);
+  font-weight: 500;
 }
 
-.info-item {
-    padding: 20px;
-    border-top: 1px solid rgba(214,183,121,0.2);
-}
-
-.info-title {
-    color: var(--gold);
-    font-family: "DM Sans", sans-serif;
-    font-size: 10px;
-    letter-spacing: 3px;
-    margin-bottom: 10px;
-}
-
-.info-text {
-    color: var(--cream);
-    font-size: 17px;
-    line-height: 1.8;
+.address {
+  font-family: 'Noto Serif Armenian', serif;
+  font-size: 13px;
+  margin-top: 9px;
+  color: #8c7968;
 }
 
 .footer {
-    padding: 40px 20px;
-    text-align: center;
-    background: #090909;
-    color: var(--gold);
-    font-size: 20px;
+  margin-top: 48px;
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: #aa9178;
+  text-transform: uppercase;
 }
 
-/* MOBILE */
+/* Floating balloons */
+
+.balloon {
+  position: absolute;
+  bottom: -180px;
+  width: 75px;
+  height: 95px;
+  border-radius: 50% 50% 45% 45%;
+  opacity: 0;
+  z-index: 2;
+  animation: floatUp linear infinite;
+  box-shadow:
+    inset -12px -12px 20px rgba(90, 65, 45, 0.10),
+    inset 10px 8px 18px rgba(255,255,255,0.65),
+    0 10px 25px rgba(100,75,50,0.08);
+}
+
+.balloon::before {
+  content: "";
+  position: absolute;
+  width: 9px;
+  height: 10px;
+  background: inherit;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.balloon::after {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 95px;
+  background: rgba(157, 128, 99, 0.35);
+  top: 100%;
+  left: 50%;
+}
+
+.b1 {
+  left: 7%;
+  background: radial-gradient(circle at 30% 25%, #fffaf1, #e9d8bd 60%, #c9ae8c);
+  animation-duration: 17s;
+  animation-delay: 1s;
+}
+
+.b2 {
+  left: 22%;
+  width: 55px;
+  height: 72px;
+  background: radial-gradient(circle at 30% 25%, #fff, #e7dfd3 65%, #c6b7a4);
+  animation-duration: 21s;
+  animation-delay: 5s;
+}
+
+.b3 {
+  right: 9%;
+  background: radial-gradient(circle at 30% 25%, #fff9ef, #dfc8a7 60%, #b9966e);
+  animation-duration: 19s;
+  animation-delay: 3s;
+}
+
+.b4 {
+  right: 25%;
+  width: 60px;
+  height: 78px;
+  background: radial-gradient(circle at 30% 25%, #fff, #eee3d5 60%, #cdbba6);
+  animation-duration: 23s;
+  animation-delay: 8s;
+}
+
+.b5 {
+  left: 45%;
+  width: 48px;
+  height: 63px;
+  background: radial-gradient(circle at 30% 25%, #fffaf1, #e8d3b5 60%, #c3a27c);
+  animation-duration: 20s;
+  animation-delay: 11s;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) translateX(0) rotate(-8deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.95;
+  }
+  50% {
+    transform: translateY(-65vh) translateX(25px) rotate(8deg);
+  }
+  90% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-125vh) translateX(-15px) rotate(-8deg);
+    opacity: 0;
+  }
+}
+
+@keyframes numberAppear {
+  0% {
+    opacity: 0;
+    transform: scale(.55);
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: drop-shadow(0 12px 15px rgba(113,82,54,.15));
+  }
+}
+
+@keyframes slideLeft {
+  from { opacity: 0; transform: translate(-100px,-50%); }
+  to { opacity: 1; transform: translate(0,-50%); }
+}
+
+@keyframes slideRight {
+  from { opacity: 0; transform: translate(100px,-50%); }
+  to { opacity: 1; transform: translate(0,-50%); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile */
 
 @media (max-width: 600px) {
-    .navbar {
-        padding: 22px 6%;
-    }
+  .page {
+    padding: 55px 18px;
+    min-height: 100svh;
+  }
 
-    .logo {
-        font-size: 15px;
-    }
+  .number-area {
+    min-height: 210px;
+  }
 
-    .nav-label {
-        font-size: 8px;
-        letter-spacing: 2px;
-    }
+  .number {
+    font-size: 175px;
+    letter-spacing: -13px;
+  }
 
-    .hero {
-        padding: 120px 22px 80px;
-    }
+  .side-number {
+    font-size: 40px;
+  }
 
-    .hero-description {
-        font-size: 12px;
-    }
+  .left-number {
+    left: 0;
+  }
 
-    .hero::before {
-        width: 350px;
-        height: 350px;
-    }
+  .right-number {
+    right: 0;
+  }
 
-    .hero::after {
-        width: 450px;
-        height: 450px;
-    }
+  .small-title {
+    letter-spacing: 4px;
+  }
 
-    .balloon {
-        width: 48px;
-        height: 65px;
-    }
+  .details {
+    gap: 25px;
+  }
 
-    .details {
-        padding: 75px 22px;
-    }
+  .invitation {
+    font-size: 14px;
+  }
+
+  .balloon {
+    transform: scale(.75);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-    }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<nav class="navbar">
-    <div class="nav-content">
-        <div class="logo">ELIZA · 25</div>
-        <div class="nav-label">A SPECIAL CELEBRATION</div>
+<main class="page">
+
+  <!-- Floating balloons -->
+  <div class="balloon b1"></div>
+  <div class="balloon b2"></div>
+  <div class="balloon b3"></div>
+  <div class="balloon b4"></div>
+  <div class="balloon b5"></div>
+
+  <section class="content">
+
+    <div class="small-title">A special celebration</div>
+
+    <div class="number-area">
+      <span class="side-number left-number">25</span>
+      <div class="number">25</div>
+      <span class="side-number right-number">25</span>
     </div>
-</nav>
 
-<main class="hero">
+    <h1>Էլիզայի 25-ամյակ</h1>
+    <div class="subtitle">Birthday invitation</div>
 
-    <div class="balloon balloon-1"></div>
-    <div class="balloon balloon-2"></div>
-    <div class="balloon balloon-3"></div>
-    <div class="balloon balloon-4"></div>
-    <div class="balloon balloon-5"></div>
-    <div class="balloon balloon-6"></div>
+    <div class="line"></div>
 
-    <div class="hero-content">
+    <p class="invitation">
+      Սիրով հրավիրում եմ քեզ միասին նշելու
+      իմ կյանքի այս գեղեցիկ օրը։
+      <br>
+      Սպասում եմ քեզ՝ այս օրը միասին
+      անմոռանալի դարձնելու։
+    </p>
 
-        <div class="eyebrow">YOU ARE INVITED</div>
+    <div class="details">
 
-        <h1>
-            Իմ նոր գլուխը՝
-            <span>25</span>
-        </h1>
+      <div class="detail">
+        <div class="detail-label">Date</div>
+        <div class="detail-value">November 25</div>
+      </div>
 
-        <div class="gold-line"></div>
+      <div class="detail">
+        <div class="detail-label">Time</div>
+        <div class="detail-value">19:00</div>
+      </div>
 
-        <p class="hero-description">
-            Կյանքի ամենագեղեցիկ պահերը դառնում են
-            ավելի թանկ, երբ կիսում ենք դրանք
-            մեզ համար կարևոր մարդկանց հետ։
-            Սիրով հրավիրում եմ քեզ՝ միասին
-            նշելու իմ 25-ամյակը։
-        </p>
-
-        <div class="gold-line"></div>
-
-        <div class="event-date">
-            NOVEMBER 25 · 19:00
-        </div>
-
-        <a href="#details" class="button">
-            ԲԱՑԵԼ ՀՐԱՎԵՐԸ <span>→</span>
-        </a>
+      <div class="detail">
+        <div class="detail-label">Place</div>
+        <div class="detail-value">Apres Restaurant</div>
+        <div class="address">Խանջյան 2/9, Երևան</div>
+      </div>
 
     </div>
+
+    <div class="footer">Can't wait to see you</div>
+
+  </section>
+
 </main>
-
-<section class="details" id="details">
-
-    <div class="details-content">
-
-        <div class="eyebrow">THE CELEBRATION</div>
-
-        <h2>Սպասում եմ քեզ</h2>
-
-        <p class="details-description">
-            Ինձ համար շատ հաճելի կլինի
-            այս գեղեցիկ օրը կիսել քեզ հետ։
-            Քո ներկայությունն իմ լավագույն նվերը կլինի։
-        </p>
-
-        <div class="info-item">
-            <div class="info-title">DATE</div>
-            <div class="info-text">Նոյեմբերի 25</div>
-        </div>
-
-        <div class="info-item">
-            <div class="info-title">TIME</div>
-            <div class="info-text">19:00</div>
-        </div>
-
-        <div class="info-item">
-            <div class="info-title">LOCATION</div>
-            <div class="info-text">
-                Apres Restaurant<br>
-                Խանջյան 2/9, Երևան
-            </div>
-        </div>
-
-        <a
-            href="https://www.google.com/maps/search/?api=1&query=Apres+Restaurant+Yerevan"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="button"
-        >
-            ԳՏՆԵԼ ՔԱՐՏԵԶՈՒՄ →
-        </a>
-
-    </div>
-</section>
-
-<footer class="footer">
-    With love, Eliza ♡
-</footer>
 
 </body>
 </html>
+
